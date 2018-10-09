@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'Angular JsPlumb Integration';
@@ -16,11 +16,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   commonTargetAnd = {
     isSource:false,
     isTarget:true,
-    connector:"Straight",
-    endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    connector:"Flowchart",
+    endpoint:"Dot",
+    paintStyle:{ fill:"white", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
-    connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
+    connectorStyle:{ outlineStroke:"lightblue", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
     parameters: { type: 'AND'},
     maxConnections: 1,
@@ -28,11 +28,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   commonSourceAnd = {
     isSource:true,
     isTarget:false,
-    connector:"Straight",
-    endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    connector:"Flowchart",
+    endpoint:"Dot",
+    paintStyle:{ fill:"white", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
-    connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
+    connectorStyle:{ outlineStroke:"lightblue", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
     parameters: { type: 'AND'},
     maxConnections: -1
@@ -40,11 +40,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   commonTargetOr = {
     isSource:false,
     isTarget:true,
-    connector:"Straight",
-    endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    connector:"Flowchart",
+    endpoint:"Dot",
+    paintStyle:{ fill:"white", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
-    connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
+    connectorStyle:{ outlineStroke:"lightblue", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
     parameters: { type: 'OR'},
     maxConnections:1,
@@ -52,11 +52,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   commonSourceOr = {
     isSource:true,
     isTarget:false,
-    connector:"Straight",
-    endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    connector:"Flowchart",
+    endpoint:"Dot",
+    paintStyle:{ fill:"white", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
-    connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
+    connectorStyle:{ outlineStroke:"lightblue", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
     parameters: { type: 'OR'},
     maxConnections: -1
@@ -64,11 +64,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   commonTargetNot = {
     isSource:false,
     isTarget:true,
-    connector:"Straight",
+    connector:"Flowchart",
     endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    paintStyle:{ fill:"white", outlineStroke:"white", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
-    connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
+    connectorStyle:{ outlineStroke:"lightblue", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
     maxConnections:1,
     parameters: { type: 'NOT'},
@@ -76,11 +76,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   commonSourceNot = {
     isSource:true,
     isTarget:false,
-    connector:"Straight",
+    connector:"Flowchart",
     endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    paintStyle:{ fill:"white", outlineStroke:"white", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
-    connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
+    connectorStyle:{ outlineStroke:"lightblue", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
     maxConnections:1,
     parameters: { type: 'NOT'}
@@ -90,9 +90,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     isTarget:true,
     connector:"Straight",
     endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    paintStyle:{ fill:"white", outlineStroke:"red", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
-    connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
+    connectorStyle:{ outlineStroke:"lightblue", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
     maxConnections:1,
     parameters: { type: 'OBJECT'},
@@ -102,7 +102,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     isTarget:false,
     connector:"Straight",
     endpoint:"Rectangle",
-    paintStyle:{ fill:"white", outlineStroke:"blue", strokeWidth:3 },
+    paintStyle:{ fill:"white", outlineStroke:"red", strokeWidth:3 },
     hoverPaintStyle:{ outlineStroke:"lightblue" },
     connectorStyle:{ outlineStroke:"green", strokeWidth:1 },
     connectorHoverStyle:{ strokeWidth:2 },
@@ -117,12 +117,20 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     
     this.jsPlumbInstance = jsPlumb.getInstance();
-    var test = this.jsPlumbInstance;
+    var dockforJavascriptEvent = this.jsPlumbInstance;
+    this.jsPlumbInstance.Defaults.Overlays = [
+      [ "Arrow", { 
+          location:1,
+          id:"arrow",
+          length:14,
+          foldback:0.8
+      } ]
+];
     this.jsPlumbInstance.setContainer("diagramContainer");
     /**
      * Add Start Point
      */
-    this.d1.nativeElement.insertAdjacentHTML('beforeend', '<div _ngcontent-c0 id="0" class="item rectangle" style="top: 200px;left:150px;">Start Point</div>');
+    this.d1.nativeElement.insertAdjacentHTML('beforeend', '<div _ngcontent-c0 id="0" class="item rectangle2" style="top: 200px;left:150px;">Start Point</div>');
       this.jsPlumbInstance.addEndpoint("0".toString(), { 
         anchor:"Bottom"
       }, this.commonSourceStart); 
@@ -135,26 +143,26 @@ export class AppComponent implements OnInit, AfterViewInit {
         
         if(targetType === 'OBJECT') {
           if(!(sourceType === 'OR' || sourceType === 'AND' || sourceType === 'START')) {
-            test.deleteConnection(info.connection);
+            dockforJavascriptEvent.deleteConnection(info.connection);
           }
         }
         if(targetType === 'OR' || targetType === 'AND') {
           if(!(sourceType === 'OR' || sourceType === 'AND' || sourceType === 'NOT' || sourceType === 'START')) {
-            test.deleteConnection(info.connection);
+            dockforJavascriptEvent.deleteConnection(info.connection);
           }
         }
         if(sourceType === 'NOT') {
           if(!(targetType === 'OR' || targetType === 'AND' || sourceType === 'START')) {
-            test.deleteConnection(info.connection);
+            dockforJavascriptEvent.deleteConnection(info.connection);
           }
         }
         if(targetType === 'NOT') {
           if(!(sourceType === 'OR' || sourceType === 'AND' || sourceType === 'START')) {
-            test.deleteConnection(info.connection);
+            dockforJavascriptEvent.deleteConnection(info.connection);
           }
         }
       } else {
-        test.deleteConnection(info.connection);
+        dockforJavascriptEvent.deleteConnection(info.connection);
       }
     });
   }
@@ -208,15 +216,17 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.renderer.addClass(newDiv, 'item');
     this.renderer.setAttribute(newDiv, 'id', id);
 
-    let deleteSpan = this.renderer.createElement('span');
-    this.renderer.addClass(deleteSpan, 'badge');
-    this.renderer.addClass(deleteSpan, 'badge-dark');
-    this.renderer.listen(deleteSpan,'click', (event) => {this.deleteNode( event, id)})
-    const textSpan = this.renderer.createText('X');
-    this.renderer.appendChild(deleteSpan, textSpan);
-
-    this.renderer.appendChild(newDiv, deleteSpan);
+    
     if( type === 'OR') {
+      let deleteSpan = this.renderer.createElement('span');
+      this.renderer.addClass(deleteSpan, 'badge2');
+      this.renderer.addClass(deleteSpan, 'badge-dark2');
+      this.renderer.listen(deleteSpan,'click', (event) => {this.deleteNode( event, id)})
+      const textSpan = this.renderer.createText('X');
+      this.renderer.appendChild(deleteSpan, textSpan);
+
+      this.renderer.appendChild(newDiv, deleteSpan);
+
       this.renderer.addClass(newDiv, 'rectangle');
       const textDiv = this.renderer.createText('OR');
       this.renderer.appendChild(newDiv, textDiv);
@@ -229,6 +239,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       }, this.commonSourceOr); 
       this.jsPlumbInstance.draggable(id.toString(),{containment: 'diagramContainer'});
     } else if( type === 'AND') {
+      let deleteSpan = this.renderer.createElement('span');
+      this.renderer.addClass(deleteSpan, 'badge2');
+      this.renderer.addClass(deleteSpan, 'badge-dark2');
+      this.renderer.listen(deleteSpan,'click', (event) => {this.deleteNode( event, id)})
+      const textSpan = this.renderer.createText('X');
+      this.renderer.appendChild(deleteSpan, textSpan);
+
+      this.renderer.appendChild(newDiv, deleteSpan);
       this.renderer.addClass(newDiv, 'rectangle');
       const textDiv = this.renderer.createText('AND');
       this.renderer.appendChild(newDiv, textDiv);
@@ -241,7 +259,15 @@ export class AppComponent implements OnInit, AfterViewInit {
       }, this.commonSourceAnd); 
       this.jsPlumbInstance.draggable(id.toString(),{containment: 'diagramContainer'});
     } else if( type === 'NOT') {
-      this.renderer.addClass(newDiv, 'triangle');
+      let deleteSpan = this.renderer.createElement('span');
+      this.renderer.addClass(deleteSpan, 'badge3');
+      this.renderer.addClass(deleteSpan, 'badge-dark3');
+      this.renderer.listen(deleteSpan,'click', (event) => {this.deleteNode( event, id)})
+      const textSpan = this.renderer.createText('X');
+      this.renderer.appendChild(deleteSpan, textSpan);
+
+      this.renderer.appendChild(newDiv, deleteSpan);
+      this.renderer.addClass(newDiv, 'rectangle3');
       const textDiv = this.renderer.createText('NOT');
       this.renderer.appendChild(newDiv, textDiv);
       this.renderer.appendChild(this.d1.nativeElement, newDiv);

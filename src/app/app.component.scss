@@ -1,0 +1,175 @@
+#diagramContainer {
+    padding: 20px;
+    width:80%; height: 1200px;
+    border: 1px solid #808080;
+    position: relative;
+    background-image: radial-gradient(white 5%, rgb(176, 180, 186) 25%, gray 90%);
+    
+}
+
+.item {
+    position: absolute;
+}
+.triangle {
+    width: 0; 
+    height: 0; 
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;  
+    border-bottom: 75px solid blue;
+}
+.triangle:before {
+    content: "";
+    width: 0; 
+    height: 0;
+    position: absolute; 
+    border-left: 65px solid transparent;
+    border-right: 65px solid transparent;  
+    border-bottom: 65px solid white;
+    top:6px;
+    left: -65px;
+}
+.item.rectangle3 {
+    height: 80px;
+    width: 80px;
+    border: 1px solid #8080803b;
+    --c1: #ffecd2;
+    --c2: #fcb69f;
+    background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+    box-shadow: 4px 0px #8080803b;
+    text-align: center;
+    padding-top: 26px;
+    word-break: break-all;
+    left: 0;
+    right: 0;
+    font-family: monospace;
+    color: rgb(80, 9, 9);
+    font-size: 14px;
+    &:hover{
+        --x: 100%;
+        color: rgb(143, 5, 5);
+        cursor: default;
+    }
+}
+.item.rectangle2 {
+    height: 120px;
+    width: 120px;
+    border: 1px solid #8080803b;
+    --c1: #a1c4fd;
+    --c2: #c2e9fb;
+    background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+    box-shadow: 4px 0px #8080803b;
+    text-align: center;
+    padding-top: 45px;
+    word-break: break-all;
+    left: 0;
+    right: 0;
+    font-family: monospace;
+    color: rgb(80, 9, 9);
+    font-size: 14px;
+    &:hover{
+        --x: 100%;
+        color: rgb(143, 5, 5);
+        cursor: default;
+    }
+}
+.item.rectangle {
+    height: 120px;
+    width: 120px;
+    border: 1px solid #8080803b;
+    --c1: #fbc2eb;
+    --c2: #a6c1ee;
+    background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+    box-shadow: 4px 0px #8080803b;
+    text-align: center;
+    padding-top: 33px;
+    word-break: break-all;
+    left: 0;
+    right: 0;
+    font-family: monospace;
+    color: rgb(80, 9, 9);
+    font-size: 14px;
+    &:hover{
+        --x: 100%;
+        color: rgb(143, 5, 5);
+        cursor: default;
+    }
+}
+.item.circle {
+    
+    height: 120px;
+    width: 120px;
+    border: 1px solid #8080803b;
+    border-radius: 100px;
+    --c1: #84fab0;
+    --c2: #8fd3f4;
+    background: linear-gradient(90deg, var(--c1, #f6d365), var(--c2, #fda085) 51%, var(--c1, #f6d365)) var(--x, 0)/ 200%;
+    box-shadow: 4px 0px #8080803b;
+    text-align: center;
+    padding-top: 33px;
+    word-break: break-all;
+    left: 0;
+    right: 0;
+    font-family: monospace;
+    color: rgb(80, 9, 9);
+    font-size: 14px;
+    &:hover{
+        --x: 100%;
+        color: rgb(143, 5, 5);
+        cursor: default;
+    }
+}
+.item.start {
+    height:80px; width: 200px;
+    border: 1px solid blue;
+}
+.badge {
+    position: absolute!important;
+    margin-top: -15px !important;
+    margin-left: 90px !important;
+    left: 0;
+    right: 0;
+}
+.badge3 {
+    position: absolute !important;
+    margin-top: -10px !important;
+    margin-left: 64px !important;
+    left: 0;
+    right: -8px;
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+.badge-dark3 {
+    color: #fff;
+    background-color: #343a40;
+}
+.badge-dark2 {
+    color: #fff;
+    background-color: #343a40;
+}
+.badge2 {
+    position: absolute !important;
+    margin-top: -15px !important;
+    margin-left: 90px !important;
+    left: 15px;
+    right: -10px;
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+.window { z-index:20; }
+._jsPlumb_connector { z-index:4; }
+._jsPlumb_endpoint { z-index:5; }
+._jsPlumb_overlay { z-index:6; }
